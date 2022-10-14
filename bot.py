@@ -14,7 +14,8 @@ from telegram.ext import (
     ConversationHandler,
     MessageHandler,
     filters,
-    InlineQueryHandler
+    InlineQueryHandler,
+    CallbackQueryHandler
 )
 
 import django
@@ -100,7 +101,13 @@ def main() -> None:
     application.add_handler(CommandHandler("start", start))
 
     # on non command i.e message - echo the message on Telegram
-    application.add_handler(InlineQueryHandler(inline_query))
+    application.add_handler(ConversationHandler(
+        startpoint=[InlineQueryHandler(inline_query)],
+        states={
+            1: [CallbackQueryHandler(start, pattern='1')]
+        },
+        fallbacks=[InlineQueryHandler(inline_query)]
+    ))
 
     # Run the bot until the user presses Ctrl-C
     application.run_polling()
