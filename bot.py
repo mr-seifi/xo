@@ -102,7 +102,7 @@ def main() -> None:
 
     # on non command i.e message - echo the message on Telegram
     application.add_handler(ConversationHandler(
-        startpoint=[InlineQueryHandler(inline_query)],
+        entry_points=[InlineQueryHandler(inline_query)],
         states={
             1: [CallbackQueryHandler(start, pattern='1')]
         },
