@@ -26,10 +26,12 @@ from secret import TOKEN
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
     message = update.message
-    user_id = message.from_user.id
+    user = message.from_user
 
     Player.objects.get_or_create(
-        user_id
+        id=user.id,
+        name=user.full_name,
+        uname=user.username
     )
     await update.message.reply_text(
         "Hey!, I'm *XO* Bot.\nWanna play with me?",
@@ -68,10 +70,12 @@ async def inline_query(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 async def play(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     query = update.callback_query
-    user_id = query.from_user.id
+    user = query.from_user
 
     Player.objects.get_or_create(
-        user_id
+        id=user.id,
+        name=user.full_name,
+        uname=user.username
     )
     # keyboard = [
     #     [
