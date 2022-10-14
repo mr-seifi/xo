@@ -56,7 +56,7 @@ async def inline_query(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     markup = InlineKeyboardMarkup(keyboard)
 
     results = [
-        InlineQueryResult(
+        InlineQueryResultArticle(
             id='1',
             title="XO",
             input_message_content=InputTextMessageContent('Wanna Play'),
