@@ -5,7 +5,7 @@ from telegram import (
     InlineKeyboardButton, 
     InlineKeyboardMarkup,
     InputTextMessageContent,
-    InlineQueryResult
+    InlineQueryResultArticle,
 )
 from telegram.ext import (
     Application,
